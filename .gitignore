@@ -1,0 +1,6 @@
+# Ignorar el archivo .ENV
+.ENV
+
+# Ignorar los archivos de Go mod
+go.mod
+go.sum

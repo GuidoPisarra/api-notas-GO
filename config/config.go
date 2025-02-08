@@ -16,6 +16,8 @@ type Config struct {
 	MongoDB     string
 }
 
+var JWTSecretKey string
+
 // Cargar las variables de entorno y devolver configuración
 func LoadConfig() (Config, error) {
 	// Cargar variables de entorno desde .env
@@ -38,4 +40,19 @@ func LoadConfig() (Config, error) {
 	}
 
 	return cfg, nil
+}
+
+
+func Init() {
+    // Cargar el archivo .env
+    err := godotenv.Load()
+    if err != nil {
+        log.Fatal("Error al cargar el archivo .env")
+    }
+
+    // Leer la clave secreta desde las variables de entorno
+    JWTSecretKey = os.Getenv("JWT_SECRET_KEY")
+    if JWTSecretKey == "" {
+        log.Fatal("JWT_SECRET_KEY no está configurado")
+    }
 }

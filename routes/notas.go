@@ -2,15 +2,17 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/pisarraguido/api-notas-Go/controllers"
+	"api-notas-Go/controllers"
+	"api-notas-Go/middlewares"
 )
 
-func NotasRoutes(r *gin.Engine) {
-	notas := r.Group("/notas")
+func NotasRoutes(router *gin.Engine) {
+	routes := router.Group("/notas")
+	routes.Use(middlewares.AuthMiddleware()) 
 	{
-		notas.GET("/", controllers.ObtenerNotas)
-		notas.POST("/", controllers.CrearNota)
-		notas.PUT("/:id", controllers.EditarNota)
-		notas.DELETE("/:id", controllers.EliminarNota)
+		routes.GET("/", controllers.ObtenerNotas)
+		routes.POST("/", controllers.CrearNota)
+		routes.PUT("/:id", controllers.EditarNota)
+		routes.DELETE("/:id", controllers.EliminarNota)
 	}
 }

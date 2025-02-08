@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 	"time"
-	"github.com/pisarraguido/api-notas-Go/config"
+	"api-notas-Go/config"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )

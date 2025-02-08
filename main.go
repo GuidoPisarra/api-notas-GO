@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"github.com/pisarraguido/api-notas-Go/database" 
+	"github.com/pisarraguido/api-notas-Go/routes"
 	"go.mongodb.org/mongo-driver/bson"
 	"context"
 	"time"
@@ -17,15 +18,14 @@ type Nota struct {
 }
 
 func main() {
-	// Conectar a MongoDB
+	// Conectar a la base de datos
 	database.ConnectMongoDB()
 
-	// Crear router Gin
+	// Crear router
 	r := gin.Default()
 
-	// Rutas
-	r.GET("/notas", obtenerNotas)
-	r.POST("/notas", crearNota)
+	// Cargar rutas desde la carpeta routes
+	routes.NotasRoutes(r)
 
 	// Iniciar servidor
 	r.Run(":8080")

@@ -15,3 +15,11 @@ Instalar Dependencias
 > go get -u github.com/prometheus/client_golang/prometheus/promhttp
 > go get github.com/joho/godotenv
 
+> go get -u github.com/swaggo/swag/cmd/swag
+> go get -u github.com/swaggo/gin-swagger
+> go get -u github.com/swaggo/gin-swagger/swaggerFiles
+
+swag init
+
+SWAGGER
+> http://localhost:8080/swagger/index.html

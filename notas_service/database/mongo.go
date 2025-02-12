@@ -4,8 +4,9 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"notas_service/config"
 	"time"
-	"api-notas-Go/config"
+
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )

@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"api-notas-Go/config"
+	"auth_service/config"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

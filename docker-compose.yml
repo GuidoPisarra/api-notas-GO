@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  auth_service:
+    build: ./auth_service
+    volumes:
+      - ./.env:/app/.env
+    ports:
+      - "8081:8081"
+    environment:
+      - JWT_SECRET_KEY=secreto_super_seguro
+    restart: always
+
+  notas_service:
+    build: ./notas_service
+    volumes:
+      - ./.env:/app/.env
+    ports:
+      - "8082:8082"
+    environment:
+      - JWT_SECRET_KEY=secreto_super_seguro
+    depends_on:
+      - auth_service
+      - mongo # Aseguramos que 'notas_service' dependa de MongoDB
+    restart: always
+
+  mongo:
+    image: mongo:latest # Usa la imagen oficial de MongoDB
+    container_name: mongodb
+    ports:
+      - "27017:27017" # Exponer MongoDB en el puerto 27017
+    volumes:
+      - mongo_data:/data/db # Persistencia de datos
+    restart: always
+
+volumes:
+  mongo_data: # Volumen para persistir los datos de MongoDB
